@@ -12,6 +12,9 @@ import Error from "./components/Error/Error";
 import AuthContextProvider from "./context/AuthContext";
 import Guard from "./components/Guard/Guard";
 import AuthGuard from "./components/AuthGuard/AuthGuard";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const routes = createBrowserRouter([
   {
@@ -83,7 +86,9 @@ export default function App() {
   return (
     <>
       <AuthContextProvider>
-        <RouterProvider router={routes} />
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={routes} />
+        </QueryClientProvider>
       </AuthContextProvider>
     </>
   );
