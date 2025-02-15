@@ -107,32 +107,30 @@ export default function Navbar() {
             </Link>
           ) : null}
 
-          {token ? (
-            <button
-              data-collapse-toggle="navbar-sticky"
-              type="button"
-              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-              aria-controls="navbar-sticky"
-              aria-expanded="false"
+          <button
+            data-collapse-toggle="navbar-sticky"
+            type="button"
+            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+            aria-controls="navbar-sticky"
+            aria-expanded="false"
+          >
+            <span className="sr-only">Open main menu</span>
+            <svg
+              className="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
             >
-              <span className="sr-only">Open main menu</span>
-              <svg
-                className="w-5 h-5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 17 14"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M1 1h15M1 7h15M1 13h15"
-                />
-              </svg>
-            </button>
-          ) : null}
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M1 1h15M1 7h15M1 13h15"
+              />
+            </svg>
+          </button>
         </div>
 
         {token ? (
@@ -187,6 +185,73 @@ export default function Navbar() {
                 </Link>
               </li>
 
+              <li className="ms-auto">
+                <ul className="flex md:gap-3 md:hidden">
+                  <li>
+                    <a
+                      href="https://instagram.com"
+                      className="block py-2 capitalize px-3 mt-2 md:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white md:hover:bg-transparent md:hover:text-green-400 md:p-2 md:px-0 transition-all"
+                    >
+                      <i className="fa-brands fa-instagram"></i>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a
+                      href="https://facebook.com"
+                      className="block py-2 capitalize px-3 mt-2 md:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white md:hover:bg-transparent md:hover:text-green-400 md:p-2 md:px-0 transition-all"
+                    >
+                      <i className="fa-brands fa-facebook"></i>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a
+                      href="https://tiktok.com"
+                      className="block py-2 capitalize px-3 mt-2 md:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white md:hover:bg-transparent md:hover:text-green-400 md:p-2 md:px-0 transition-all"
+                    >
+                      <i className="fa-brands fa-tiktok"></i>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a
+                      href="https://twitter.com"
+                      className="block py-2 capitalize px-3 mt-2 md:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white md:hover:bg-transparent md:hover:text-green-400 md:p-2 md:px-0 transition-all"
+                    >
+                      <i className="fa-brands fa-twitter"></i>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a
+                      href="https://linkedin.com"
+                      className="block py-2 capitalize px-3 mt-2 md:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white md:hover:bg-transparent md:hover:text-green-400 md:p-2 md:px-0 transition-all"
+                    >
+                      <i className="fa-brands fa-linkedin"></i>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a
+                      href="https://youtube.com"
+                      className="block py-2 capitalize px-3 mt-2 md:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white md:hover:bg-transparent md:hover:text-green-400 md:p-2 md:px-0 transition-all"
+                    >
+                      <i className="fa-brands fa-youtube"></i>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        ) : null}
+
+        {!token ? (
+          <div
+            className="items-center luv justify-between hidden w-full md:flex md:w-auto md:order-1 ms-5"
+            id="navbar-sticky"
+          >
+            <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-300 md:space-x-5 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-gray-50">
               <li className="ms-auto">
                 <ul className="flex md:gap-3 md:hidden">
                   <li>
