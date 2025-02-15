@@ -13,6 +13,7 @@ import AuthContextProvider from "./context/AuthContext";
 import Guard from "./components/Guard/Guard";
 import AuthGuard from "./components/AuthGuard/AuthGuard";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ProductDetails from "./components/ProductDetails/ProductDetails";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +59,14 @@ const routes = createBrowserRouter([
         element: (
           <Guard>
             <Brands />
+          </Guard>
+        ),
+      },
+      {
+        path: "details/:id",
+        element: (
+          <Guard>
+            <ProductDetails />
           </Guard>
         ),
       },

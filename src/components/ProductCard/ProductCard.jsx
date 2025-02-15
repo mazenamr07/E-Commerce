@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function ProductCard(props) {
   const {
@@ -14,22 +15,26 @@ export default function ProductCard(props) {
   return (
     <>
       <div className=" bg-white pb-10 relative rounded-lg drop-shadow-lg hover:drop-shadow-2xl hover: transition-all border-gray-200">
-        <a href="#">
-          <img
-            className="rounded-t-lg my-2"
-            src={imageCover}
-            alt="product image"
-          />
-        </a>
+        <Link to={`details/${_id}`}>
+          <div>
+            <img
+              className="rounded-t-lg my-2"
+              src={imageCover}
+              alt="product image"
+            />
+          </div>
+        </Link>
 
         <div className="px-3 pb-5">
           <span className="text-green-400 text-sm font-medium">
             {category.name}
           </span>
 
-          <a href="#">
-            <h5 className="font-semibold text-gray-700 ">{title}</h5>
-          </a>
+          <Link to={`details/${_id}`}>
+            <div>
+              <h5 className="font-semibold text-gray-700 ">{title}</h5>
+            </div>
+          </Link>
 
           <div className="flex justify-between items-center pt-2">
             <span className="text-gray-400">{price} EGP</span>
