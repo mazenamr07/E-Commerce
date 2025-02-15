@@ -9,6 +9,7 @@ import Brands from "./components/Brands/Brands";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Error from "./components/Error/Error";
+import AuthContextProvider from "./context/AuthContext";
 
 const routes = createBrowserRouter([
   {
@@ -30,7 +31,9 @@ const routes = createBrowserRouter([
 export default function App() {
   return (
     <>
-      <RouterProvider router={routes} />
+      <AuthContextProvider>
+        <RouterProvider router={routes} />
+      </AuthContextProvider>
     </>
   );
 }

@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { setToken } = useContext(AuthContext);
 
   let [errMsg, setErrMsg] = useState(null);
   let [successMsg, setSuccessMsg] = useState(null);
@@ -35,6 +37,9 @@ export default function Login() {
         values
       );
       setSuccessMsg(res.data.message);
+      setToken(res.data.token);
+      localStorage.setItem("token", res.data.token);
+
       setTimeout(() => {
         navigate("/");
       }, 500);
