@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProductCard from "../ProductCard/ProductCard";
 import { GridLoader } from "react-spinners";
 import { useQuery } from "@tanstack/react-query";
@@ -8,8 +8,11 @@ import swiperImg1 from "../../assets/images/slider-image-1.jpeg";
 import swiperImg2 from "../../assets/images/slider-image-2.jpeg";
 import swiperImg3 from "../../assets/images/slider-image-3.jpeg";
 import swiperImg4 from "../../assets/images/slider-2.jpeg";
+import { CartContext } from "../../context/CartContext";
 
 export default function Home() {
+  const { addToCart } = useContext(CartContext);
+
   async function getAllProducts() {
     return axios.get("https://ecommerce.routemisr.com/api/v1/products");
   }

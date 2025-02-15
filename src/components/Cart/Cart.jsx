@@ -1,15 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext, useEffect } from "react";
+import { CartContext } from "../../context/CartContext";
 
+export default function Cart() {
+  const { getCartItems } = useContext(CartContext);
+  useEffect(() => {
+    getCartItems();
+  }, []);
 
-const Cart = () => (
-  <div>
-    Cart Component
-  </div>
-);
-
-Cart.propTypes = {};
-
-Cart.defaultProps = {};
-
-export default Cart;
+  return <div>Cart</div>;
+}

@@ -14,6 +14,8 @@ import Guard from "./components/Guard/Guard";
 import AuthGuard from "./components/AuthGuard/AuthGuard";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
+import CartContextProvider from "./context/CartContext";
+import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient();
 
@@ -95,9 +97,12 @@ export default function App() {
   return (
     <>
       <AuthContextProvider>
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={routes} />
-        </QueryClientProvider>
+        <CartContextProvider>
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={routes} />
+            <Toaster position="top-right" reverseOrder={false} />
+          </QueryClientProvider>
+        </CartContextProvider>
       </AuthContextProvider>
     </>
   );

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 
 export default function ProductCard(props) {
+  const { addToCart } = useContext(CartContext);
+
   const {
     title,
     imageCover,
@@ -55,7 +58,12 @@ export default function ProductCard(props) {
           </div>
         </div>
         <div className="absolute bottom-2 flex justify-between items-center w-full pe-3">
-          <button className="flex cursor-pointer items-center text-white capitalize md:ms-2 bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 text-center transition-all">
+          <button
+            onClick={() => {
+              addToCart(_id);
+            }}
+            className="flex cursor-pointer items-center text-white capitalize md:ms-2 bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 text-center transition-all"
+          >
             Add to Cart
           </button>
 

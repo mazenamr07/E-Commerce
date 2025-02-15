@@ -19,6 +19,7 @@
     "generate-react-cli": "^8.4.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2",
     "react-router-dom": "^7.1.5",
     "react-spinners": "^0.15.0",
     "swiper": "^11.2.4",
