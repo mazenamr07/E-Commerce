@@ -19,8 +19,8 @@ export default function ProductCard(props) {
 
   return (
     <>
-      <div className=" bg-white pb-10 relative rounded-lg drop-shadow-lg hover:drop-shadow-2xl hover: transition-all border-gray-200">
-        <Link to={`details/${_id}`}>
+      <div className=" bg-white pb-10 my-5 relative rounded-lg drop-shadow-lg hover:drop-shadow-2xl hover: transition-all border-gray-200">
+        <Link to={`/details/${_id}`}>
           <div>
             <img
               className="rounded-t-lg my-2"

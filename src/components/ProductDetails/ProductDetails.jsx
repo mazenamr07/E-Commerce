@@ -2,11 +2,13 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import { WishlistContext } from "../../context/WishlistContext";
 
 export default function ProductDetails() {
   const { id } = useParams();
   let [details, setDetails] = useState();
   const { addToCart } = useContext(CartContext);
+  const { addToWishlist } = useContext(WishlistContext);
 
   async function getDetails() {
     const { data } = await axios.get(
@@ -60,15 +62,24 @@ export default function ProductDetails() {
               </div>
             </div>
 
-            <button
-              onClick={() => {
-                addToCart(id);
-                console.log(" haha");
-              }}
-              className="flex cursor-pointer w-full my-2 items-center text-white capitalize bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 text-center transition-all"
-            >
-              Add to Cart
-            </button>
+            <div className="flex items-center gap-5 my-2">
+              <button
+                onClick={() => {
+                  addToCart(id);
+                  console.log(" haha");
+                }}
+                className="flex cursor-pointer w-full my-2 items-center text-white capitalize bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 text-center transition-all"
+              >
+                Add to Cart
+              </button>
+
+              <i
+                onClick={() => {
+                  addToWishlist(id);
+                }}
+                className="fa-solid fa-heart text-3xl cursor-pointer hover:text-red-500 transition-all"
+              ></i>
+            </div>
           </div>
         </div>
       </div>

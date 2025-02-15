@@ -36,61 +36,65 @@ export default function Home() {
 
   return (
     <>
-      <div className="container mx-auto p-6 grid grid-cols-6">
-        <div className="bg-red-500 col-span-4">
+      <div className="my-5">
+        <div className="container mx-auto p-6 grid grid-cols-6">
+          <div className="bg-red-500 col-span-4">
+            <Swiper
+              slidesPerView={1}
+              loop={true}
+              className="h-[100%] border-2 border-green-400 border-r-1"
+            >
+              <SwiperSlide className="box-border">
+                <img src={swiperImg1} className="w-full h-full block" alt="" />
+              </SwiperSlide>
+              <SwiperSlide className="box-border">
+                <img src={swiperImg2} className="w-full block h-full" alt="" />
+              </SwiperSlide>
+            </Swiper>
+          </div>
+          <div className="bg-blue-500 col-span-2">
+            <div className="img h-[50%] border-2 border-green-400 border-l-1 border-b-1">
+              <img src={swiperImg3} className="block w-full h-full" alt="" />
+            </div>
+            <div className="img h-[50%] border-2 border-green-400 border-l-1 border-t-1">
+              <img src={swiperImg4} className="block w-full h-full" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div className="container mx-auto p-6 ">
           <Swiper
-            slidesPerView={1}
+            slidesPerView={6}
             loop={true}
-            className="h-[100%] border-2 border-green-400 border-r-1"
+            className="border-2 border-green-400"
           >
-            <SwiperSlide className="box-border">
-              <img src={swiperImg1} className="w-full h-full block" alt="" />
-            </SwiperSlide>
-            <SwiperSlide className="box-border">
-              <img src={swiperImg2} className="w-full block h-full" alt="" />
-            </SwiperSlide>
+            {allCategoriesData?.map((cat) => (
+              <SwiperSlide className="mx-2" key={cat._id}>
+                <div className="img h-[200px]">
+                  <img src={cat.image} className="w-full h-full" alt="" />
+                </div>
+                <div className="text-center text-lg font-normal">
+                  {cat.name}
+                </div>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
-        <div className="bg-blue-500 col-span-2">
-          <div className="img h-[50%] border-2 border-green-400 border-l-1 border-b-1">
-            <img src={swiperImg3} className="block w-full h-full" alt="" />
-          </div>
-          <div className="img h-[50%] border-2 border-green-400 border-l-1 border-t-1">
-            <img src={swiperImg4} className="block w-full h-full" alt="" />
-          </div>
-        </div>
-      </div>
 
-      <div className="container mx-auto p-6 ">
-        <Swiper
-          slidesPerView={6}
-          loop={true}
-          className="border-2 border-green-400"
-        >
-          {allCategoriesData?.map((cat) => (
-            <SwiperSlide className="mx-2" key={cat._id}>
-              <div className="img h-[200px]">
-                <img src={cat.image} className="w-full h-full" alt="" />
-              </div>
-              <div className="text-center text-lg font-normal">{cat.name}</div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-
-      {isLoading ? (
-        <div className="w-full bg-green-400 text-white font-medium capitalize text-2xl h-screen flex justify-center items-center">
-          <GridLoader color="white" />
-        </div>
-      ) : (
-        <div className="container mx-auto p-4">
-          <div className="grid gap-4 grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
-            {allProductsData.map((prod) => (
-              <ProductCard product={prod} key={prod._id} />
-            ))}
+        {isLoading ? (
+          <div className="w-full bg-green-400 text-white font-medium capitalize text-2xl h-screen flex justify-center items-center">
+            <GridLoader color="white" />
           </div>
-        </div>
-      )}
+        ) : (
+          <div className="container mx-auto p-4">
+            <div className="grid gap-4 grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
+              {allProductsData.map((prod) => (
+                <ProductCard product={prod} key={prod._id} />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
 }
