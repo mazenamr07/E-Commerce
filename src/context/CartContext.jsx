@@ -7,6 +7,7 @@ export default function CartContextProvider({ children }) {
   const [numOfCartItems, setNumOfCartItems] = useState();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState();
+  const [cartID, setCartID] = useState();
 
   async function addToCart(productId) {
     try {
@@ -37,6 +38,8 @@ export default function CartContextProvider({ children }) {
       if (res.data.status == "success") {
         setCartItems(res.data.data.products);
         setTotalPrice(res.data.data.totalCartPrice);
+        setNumOfCartItems(res.data.numOfCartItems);
+        setCartID(res.data.cartId);
       }
     } catch (err) {
       toast.error("Oops.. something went wrong!");
@@ -111,6 +114,7 @@ export default function CartContextProvider({ children }) {
       value={{
         addToCart,
         cartItems,
+        cartID,
         updateItemCount,
         clearCart,
         totalPrice,

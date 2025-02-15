@@ -36,6 +36,7 @@ export default function WishlistContextProvider({ children }) {
       );
       if (res.data.status == "success") {
         setWishlistItems(res.data.data);
+        setNumOfWishlistItems(res.data.data.length);
       }
     } catch (err) {
       toast.error("Oops.. something went wrong!");

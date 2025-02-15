@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { CartContext } from "../../context/CartContext";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
   const {
@@ -25,28 +26,18 @@ export default function Cart() {
         <h1 className="text-center text-5xl font-medium py-5 my-2 rounded-2xl bg-green-400 text-white drop-shadow-2xl border-4">
           Shopping Cart
         </h1>
-        <div className="my-2 gap-4 flex justify-end">
-          <button
-            onClick={() => {
-              setLoggingOut(true);
-
-              setTimeout(() => {
-                setToken(null);
-                localStorage.removeItem("token");
-                setLoggingOut(false);
-                navigate("/login");
-              }, 500);
-            }}
-            className="flex cursor-pointer items-center text-white capitalize md:ms-2 bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 text-center transition-all"
-          >
-            Buy Now
-          </button>
+        <div className="my-2 gap-4 flex justify-end items-center">
+          <Link to={`/order`}>
+            <button className="flex cursor-pointer py-3 items-center text-white capitalize md:ms-2 bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 text-center transition-all">
+              Buy Now
+            </button>
+          </Link>
 
           <button
             onClick={() => {
               clearCart();
             }}
-            className="flex cursor-pointer items-center text-white capitalize md:ms-2 bg-red-400 hover:bg-red-500 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 text-center transition-all"
+            className="flex cursor-pointer items-center py-3 text-white capitalize md:ms-2 bg-red-400 hover:bg-red-500 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 text-center transition-all"
           >
             Clear Cart
           </button>

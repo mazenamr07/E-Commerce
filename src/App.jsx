@@ -18,6 +18,7 @@ import CartContextProvider from "./context/CartContext";
 import { Toaster } from "react-hot-toast";
 import Wishlist from "./components/Wishlist/Wishlist";
 import WishlistContextProvider from "./context/WishlistContext";
+import Order from "./components/Order/Order";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,14 @@ const routes = createBrowserRouter([
         element: (
           <Guard>
             <Categories />
+          </Guard>
+        ),
+      },
+      {
+        path: "order",
+        element: (
+          <Guard>
+            <Order />
           </Guard>
         ),
       },

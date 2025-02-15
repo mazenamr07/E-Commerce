@@ -7,9 +7,15 @@ import { WishlistContext } from "../../context/WishlistContext";
 
 export default function Navbar() {
   const { token, setToken } = useContext(AuthContext);
-  const { numOfCartItems, addToCart } = useContext(CartContext);
-  const { numOfWishlistItems, addToWishlist } = useContext(WishlistContext);
+  const { numOfCartItems, addToCart, getCartItems } = useContext(CartContext);
+  const { numOfWishlistItems, addToWishlist, getWishlistItems } =
+    useContext(WishlistContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getCartItems();
+    getWishlistItems();
+  }, []);
 
   let [loggingOut, setLoggingOut] = useState(false);
   return (
