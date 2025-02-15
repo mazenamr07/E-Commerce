@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
 export default function Register() {
+  const navigate = useNavigate();
+
   let [errMsg, setErrMsg] = useState(null);
   let [successMsg, setSuccessMsg] = useState(null);
   let [loadingButton, setLoadingButton] = useState(false);
@@ -45,6 +48,7 @@ export default function Register() {
         values
       );
       setSuccessMsg(res.data.message);
+      navigate("/login");
     } catch (err) {
       setErrMsg(err.response.data.message);
     } finally {
