@@ -110,7 +110,11 @@ export default function Navbar() {
           <button
             data-collapse-toggle="navbar-sticky"
             type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+            className={
+              token
+                ? "inline-flex items-center p-2 w-10 h-10 md:ms-3 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                : "inline-flex items-center p-2 w-10 h-10 md:ms-3 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+            }
             aria-controls="navbar-sticky"
             aria-expanded="false"
           >
@@ -135,14 +139,14 @@ export default function Navbar() {
 
         {token ? (
           <div
-            className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 ms-5"
+            className="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1 order-3 ms-5 transition-all"
             id="navbar-sticky"
           >
-            <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-300 md:space-x-5 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-gray-50">
+            <ul className="flex flex-col p-4 lg:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-300 lg:space-x-5 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 lg:bg-gray-50">
               <li>
                 <Link
                   to=""
-                  className="block py-2 px-3 text-white bg-green-400 rounded-sm md:bg-green-400 md:text-white md:p-2"
+                  className="block py-2 px-3 text-white bg-green-400 rounded-sm lg:bg-green-400 lg:text-white lg:p-2"
                   aria-current="page"
                 >
                   Home
@@ -152,7 +156,7 @@ export default function Navbar() {
               <li>
                 <Link
                   to="cart"
-                  className="block py-2 capitalize px-3 mt-2 md:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white md:hover:bg-transparent md:hover:text-green-400 md:p-2 md:px-0 transition-all"
+                  className="block py-2 capitalize px-3 mt-2 lg:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white lg:hover:bg-transparent lg:hover:text-green-400 lg:p-2 lg:px-0 transition-all"
                 >
                   cart
                 </Link>
@@ -161,7 +165,7 @@ export default function Navbar() {
               <li>
                 <Link
                   to="products"
-                  className="block py-2 capitalize px-3 mt-2 md:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white md:hover:bg-transparent md:hover:text-green-400 md:p-2 md:px-0 transition-all"
+                  className="block py-2 capitalize px-3 mt-2 lg:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white lg:hover:bg-transparent lg:hover:text-green-400 lg:p-2 lg:px-0 transition-all"
                 >
                   products
                 </Link>
@@ -170,7 +174,7 @@ export default function Navbar() {
               <li>
                 <Link
                   to="categories"
-                  className="block py-2 capitalize px-3 mt-2 md:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white md:hover:bg-transparent md:hover:text-green-400 md:p-2 md:px-0 transition-all"
+                  className="block py-2 capitalize px-3 mt-2 lg:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white lg:hover:bg-transparent lg:hover:text-green-400 lg:p-2 lg:px-0 transition-all"
                 >
                   categories
                 </Link>
@@ -179,7 +183,7 @@ export default function Navbar() {
               <li>
                 <Link
                   to="brands"
-                  className="block py-2 capitalize px-3 mt-2 md:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white md:hover:bg-transparent md:hover:text-green-400 md:p-2 md:px-0 transition-all"
+                  className="block py-2 capitalize px-3 mt-2 lg:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white lg:hover:bg-transparent lg:hover:text-green-400 lg:p-2 lg:px-0 transition-all"
                 >
                   brands
                 </Link>
