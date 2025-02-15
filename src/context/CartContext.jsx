@@ -20,7 +20,6 @@ export default function CartContextProvider({ children }) {
       if (res.data.status == "success") {
         toast.success(res.data.message);
         setNumOfCartItems(res.data.numOfCartItems);
-        console.log(res);
       }
     } catch (err) {
       toast.error("Oops.. something went wrong!");
@@ -86,12 +85,34 @@ export default function CartContextProvider({ children }) {
     }
   }
 
+  async function clearCart() {
+    try {
+      const res = await axios.delete(
+        "https://ecommerce.routemisr.com/api/v1/cart",
+        {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        }
+      );
+
+      if (res.data.message == "success") {
+        setCartItems(null);
+        setTotalPrice(0);
+        setNumOfCartItems(0);
+      }
+    } catch (err) {
+      toast.error("Oops.. something went wrong!");
+    }
+  }
+
   return (
     <CartContext.Provider
       value={{
         addToCart,
         cartItems,
         updateItemCount,
+        clearCart,
         totalPrice,
         numOfCartItems,
         getCartItems,

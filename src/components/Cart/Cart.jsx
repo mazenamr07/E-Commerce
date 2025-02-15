@@ -6,6 +6,7 @@ export default function Cart() {
     getCartItems,
     cartItems,
     deleteCartItem,
+    clearCart,
     updateItemCount,
     totalPrice,
   } = useContext(CartContext);
@@ -24,8 +25,33 @@ export default function Cart() {
         <h1 className="text-center text-5xl font-medium py-5 my-2 rounded-2xl bg-green-400 text-white drop-shadow-2xl border-4">
           Shopping Cart
         </h1>
-        <div className="my-2 flex justify-end">
-          <span className="text-center text-xl py-5 px-5 rounded-2xl bg-green-400 text-white drop-shadow-2xl border-4">
+        <div className="my-2 gap-4 flex justify-end">
+          <button
+            onClick={() => {
+              setLoggingOut(true);
+
+              setTimeout(() => {
+                setToken(null);
+                localStorage.removeItem("token");
+                setLoggingOut(false);
+                navigate("/login");
+              }, 500);
+            }}
+            className="flex cursor-pointer items-center text-white capitalize md:ms-2 bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 text-center transition-all"
+          >
+            Buy Now
+          </button>
+
+          <button
+            onClick={() => {
+              clearCart();
+            }}
+            className="flex cursor-pointer items-center text-white capitalize md:ms-2 bg-red-400 hover:bg-red-500 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 text-center transition-all"
+          >
+            Clear Cart
+          </button>
+
+          <span className="text-center text-xl py-3 px-5 rounded-2xl bg-green-400 text-white drop-shadow-2xl border-4">
             Total Price : {totalPrice}
           </span>
         </div>
@@ -51,7 +77,7 @@ export default function Cart() {
               </tr>
             </thead>
             <tbody>
-              {cartItems.map((item) => (
+              {cartItems?.map((item) => (
                 <tr
                   key={item.product.id}
                   className="bg-white border-b  border-gray-200 hover:bg-gray-50"
