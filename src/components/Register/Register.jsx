@@ -71,7 +71,7 @@ export default function Register() {
   });
 
   return (
-    <div className="bg-white py-10">
+    <div className=" bg-white py-10 min-h-[59.5vh]">
       <form
         onSubmit={formik.handleSubmit}
         className="max-w-sm mx-auto bg-gray-50 p-8 box-content rounded-3xl"
