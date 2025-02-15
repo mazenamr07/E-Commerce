@@ -17,7 +17,7 @@ export default function Footer() {
           We will send you a link, open it on your mobile phone to download the
           app.
         </p>
-        
+
         <form className="flex items-center">
           <input
             type="email"
@@ -29,7 +29,7 @@ export default function Footer() {
 
           <button
             type="submit"
-            className="capitalize py-2.5 px-3 ms-2 me-6 w-3xs text-center text-sm font-medium text-white bg-blue-400 hover:bg-blue-500 rounded-lg border border-blue-400  focus:ring-3 focus:outline-none focus:ring-blue-300"
+            className="capitalize transition-all py-2.5 px-3 ms-2 me-6 w-3xs text-center text-sm font-medium text-white bg-blue-400 hover:bg-blue-500 rounded-lg border border-blue-400  focus:ring-3 focus:outline-none focus:ring-blue-300"
           >
             Get App Link
           </button>
