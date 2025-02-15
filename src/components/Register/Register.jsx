@@ -6,6 +6,7 @@ import * as yup from "yup";
 export default function Register() {
   let [errMsg, setErrMsg] = useState(null);
   let [successMsg, setSuccessMsg] = useState(null);
+  let [loadingButton, setLoadingButton] = useState(false);
 
   const validationSchema = yup.object().shape({
     name: yup
@@ -37,6 +38,7 @@ export default function Register() {
   async function register(values) {
     setErrMsg(null);
     setSuccessMsg(null);
+    setLoadingButton(true);
     try {
       const res = await axios.post(
         "https://ecommerce.routemisr.com/api/v1/auth/signup",
@@ -45,6 +47,8 @@ export default function Register() {
       setSuccessMsg(res.data.message);
     } catch (err) {
       setErrMsg(err.response.data.message);
+    } finally {
+      setLoadingButton(false);
     }
   }
 
@@ -66,7 +70,7 @@ export default function Register() {
         onSubmit={formik.handleSubmit}
         className="max-w-sm mx-auto bg-gray-50 p-8 box-content rounded-3xl"
       >
-        <p className="text-center text-2xl font-medium mb-5">
+        <p className="text-center text-2xl font-medium mb-5 border-b-2 border-blue-400 pb-2">
           Register your Account
         </p>
         <div className="mb-5">
@@ -284,7 +288,7 @@ export default function Register() {
             type="submit"
             className="text-white cursor-pointer bg-blue-400 hover:bg-blue-500 focus:ring-3 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
           >
-            Register new account
+            {loadingButton ? "Registering..." : "Register new account"}
           </button>
 
           {errMsg ? (
