@@ -10,19 +10,70 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Error from "./components/Error/Error";
 import AuthContextProvider from "./context/AuthContext";
+import Guard from "./components/Guard/Guard";
+import AuthGuard from "./components/AuthGuard/AuthGuard";
 
 const routes = createBrowserRouter([
   {
     path: "",
     element: <Layout />,
     children: [
-      { index: true, element: <Home /> },
-      { path: "cart", element: <Cart /> },
-      { path: "categories", element: <Categories /> },
-      { path: "products", element: <Products /> },
-      { path: "brands", element: <Brands /> },
-      { path: "login", element: <Login /> },
-      { path: "register", element: <Register /> },
+      {
+        index: true,
+        element: (
+          <Guard>
+            <Home />
+          </Guard>
+        ),
+      },
+      {
+        path: "cart",
+        element: (
+          <Guard>
+            <Cart />
+          </Guard>
+        ),
+      },
+      {
+        path: "categories",
+        element: (
+          <Guard>
+            <Categories />
+          </Guard>
+        ),
+      },
+      {
+        path: "products",
+        element: (
+          <Guard>
+            <Products />
+          </Guard>
+        ),
+      },
+      {
+        path: "brands",
+        element: (
+          <Guard>
+            <Brands />
+          </Guard>
+        ),
+      },
+      {
+        path: "login",
+        element: (
+          <AuthGuard>
+            <Login />
+          </AuthGuard>
+        ),
+      },
+      {
+        path: "register",
+        element: (
+          <AuthGuard>
+            <Register />
+          </AuthGuard>
+        ),
+      },
       { path: "*", element: <Error /> },
     ],
   },
