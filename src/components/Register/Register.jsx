@@ -48,7 +48,9 @@ export default function Register() {
         values
       );
       setSuccessMsg(res.data.message);
-      navigate("/login");
+      setTimeout(() => {
+        navigate("/login");
+      }, 500);
     } catch (err) {
       setErrMsg(err.response.data.message);
     } finally {
