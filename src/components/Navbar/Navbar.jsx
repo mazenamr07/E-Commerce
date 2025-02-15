@@ -3,15 +3,13 @@ import Logo from "./../../assets/images/freshcart-logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { CartContext } from "../../context/CartContext";
+import { WishlistContext } from "../../context/WishlistContext";
 
 export default function Navbar() {
   const { token, setToken } = useContext(AuthContext);
   const { numOfCartItems, addToCart } = useContext(CartContext);
+  const { numOfWishlistItems, addToWishlist } = useContext(WishlistContext);
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   addToCart("007");
-  // }, []);
 
   let [loggingOut, setLoggingOut] = useState(false);
   return (
@@ -169,6 +167,20 @@ export default function Navbar() {
                 <Link to="cart">
                   <div className="w-5 h-5 top-[-10%] end-[-35%] bg-blue-400 rounded-full text-xs absolute flex items-center justify-center text-white">
                     {numOfCartItems}
+                  </div>
+                </Link>
+              </li>
+
+              <li className="relative">
+                <Link
+                  to="wishlist"
+                  className="block py-2 capitalize px-3 mt-2 lg:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white lg:hover:bg-transparent lg:hover:text-green-400 lg:p-2 lg:px-0 transition-all"
+                >
+                  wishlist
+                </Link>
+                <Link to="wishlist">
+                  <div className="w-5 h-5 top-[-10%] end-[-25%] bg-red-400 rounded-full text-xs absolute flex items-center justify-center text-white">
+                    {numOfWishlistItems}
                   </div>
                 </Link>
               </li>

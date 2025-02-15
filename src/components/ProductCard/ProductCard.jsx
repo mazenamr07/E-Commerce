@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import { WishlistContext } from "../../context/WishlistContext";
 
 export default function ProductCard(props) {
   const { addToCart } = useContext(CartContext);
+  const { addToWishlist } = useContext(WishlistContext);
 
   const {
     title,
@@ -67,7 +69,12 @@ export default function ProductCard(props) {
             Add to Cart
           </button>
 
-          <i className="fa-solid fa-heart text-3xl cursor-pointer hover:text-red-500 transition-all"></i>
+          <i
+            onClick={() => {
+              addToWishlist(_id);
+            }}
+            className="fa-solid fa-heart text-3xl cursor-pointer hover:text-red-500 transition-all"
+          ></i>
         </div>
       </div>
     </>

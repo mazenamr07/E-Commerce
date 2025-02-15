@@ -2,16 +2,16 @@ import axios from "axios";
 import React, { createContext, useState } from "react";
 import toast from "react-hot-toast";
 
-export const CartContext = createContext();
-export default function CartContextProvider({ children }) {
-  const [numOfCartItems, setNumOfCartItems] = useState();
-  const [cartItems, setCartItems] = useState([]);
+export const WishlistContext = createContext();
+export default function WishlistContextProvider({ children }) {
+  const [numOfWishlistItems, setNumOfWishlistItems] = useState();
+  const [wishlistItems, setWishlistItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState();
 
-  async function addToCart(productId) {
+  async function addToWishlist(productId) {
     try {
       const res = await axios.post(
-        "https://ecommerce.routemisr.com/api/v1/cart",
+        "https://ecommerce.routemisr.com/api/v1/wishlist",
         {
           productId,
         },
@@ -19,25 +19,23 @@ export default function CartContextProvider({ children }) {
       );
       if (res.data.status == "success") {
         toast.success(res.data.message);
-        setNumOfCartItems(res.data.numOfCartItems);
-        console.log(res);
+        setNumOfWishlistItems(res.data.data.length);
       }
     } catch (err) {
       toast.error("Oops.. something went wrong!");
     }
   }
 
-  async function getCartItems() {
+  async function getWishlistItems() {
     try {
       const res = await axios.get(
-        "https://ecommerce.routemisr.com/api/v1/cart",
+        "https://ecommerce.routemisr.com/api/v1/wishlist",
         {
           headers: { token: localStorage.getItem("token") },
         }
       );
       if (res.data.status == "success") {
-        setCartItems(res.data.data.products);
-        setTotalPrice(res.data.data.totalCartPrice);
+        setWishlistItems(res.data.data);
       }
     } catch (err) {
       toast.error("Oops.. something went wrong!");
@@ -47,7 +45,7 @@ export default function CartContextProvider({ children }) {
   async function updateItemCount(id, count) {
     try {
       const res = await axios.put(
-        `https://ecommerce.routemisr.com/api/v1/cart/${id}`,
+        `https://ecommerce.routemisr.com/api/v1/wishlist/${id}`,
         {
           count,
         },
@@ -58,18 +56,18 @@ export default function CartContextProvider({ children }) {
         }
       );
       if (res.data.status == "success") {
-        setCartItems(res.data.data.products);
-        setTotalPrice(res.data.data.totalCartPrice);
+        setWishlistItems(res.data.data.products);
+        setTotalPrice(res.data.data.totalWishlistPrice);
       }
     } catch (err) {
       toast.error("Oops.. something went wrong!");
     }
   }
 
-  async function deleteCartItem(id) {
+  async function deleteWishlistItem(id) {
     try {
       const res = await axios.delete(
-        `https://ecommerce.routemisr.com/api/v1/cart/${id}`,
+        `https://ecommerce.routemisr.com/api/v1/wishlist/${id}`,
         {
           headers: {
             token: localStorage.getItem("token"),
@@ -77,9 +75,9 @@ export default function CartContextProvider({ children }) {
         }
       );
       if (res.data.status == "success") {
-        setCartItems(res.data.data.products);
-        setTotalPrice(res.data.data.totalCartPrice);
-        setNumOfCartItems(res.data.numOfCartItems);
+        setNumOfWishlistItems(res.data.data.length);
+        toast.success(res.data.message);
+        window.location.reload();
       }
     } catch (err) {
       toast.error("Oops.. something went wrong!");
@@ -87,18 +85,18 @@ export default function CartContextProvider({ children }) {
   }
 
   return (
-    <CartContext.Provider
+    <WishlistContext.Provider
       value={{
-        addToCart,
-        cartItems,
+        addToWishlist,
+        wishlistItems,
         updateItemCount,
         totalPrice,
-        numOfCartItems,
-        getCartItems,
-        deleteCartItem,
+        numOfWishlistItems,
+        getWishlistItems,
+        deleteWishlistItem,
       }}
     >
       {children}
-    </CartContext.Provider>
+    </WishlistContext.Provider>
   );
 }
