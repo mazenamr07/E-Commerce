@@ -13,7 +13,7 @@ export default function ProductCard(props) {
 
   return (
     <>
-      <div className=" bg-white rounded-lg drop-shadow-lg hover:drop-shadow-2xl hover: transition-all border-gray-200">
+      <div className=" bg-white pb-10 relative rounded-lg drop-shadow-lg hover:drop-shadow-2xl hover: transition-all border-gray-200">
         <a href="#">
           <img
             className="rounded-t-lg my-2"
@@ -48,6 +48,13 @@ export default function ProductCard(props) {
               <span className="text-gray-400 mx-1">{ratingsAverage}</span>
             </div>
           </div>
+        </div>
+        <div className="absolute bottom-2 flex justify-between items-center w-full pe-3">
+          <button className="flex cursor-pointer items-center text-white capitalize md:ms-2 bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 text-center transition-all">
+            Add to Cart
+          </button>
+
+          <i className="fa-solid fa-heart text-3xl cursor-pointer hover:text-red-500 transition-all"></i>
         </div>
       </div>
     </>
