@@ -13,12 +13,23 @@ export default function Home() {
   async function getAllProducts() {
     return axios.get("https://ecommerce.routemisr.com/api/v1/products");
   }
+  async function getAllCategories() {
+    return axios.get("https://ecommerce.routemisr.com/api/v1/categories");
+  }
 
   const { data, isLoading } = useQuery({
     queryKey: ["allProducts"],
     queryFn: getAllProducts,
+    refetchOnWindowFocus: false,
   });
   const allProductsData = data?.data.data;
+
+  const { data: allCat, isLoading: catLoading } = useQuery({
+    queryKey: ["allCategories"],
+    queryFn: getAllCategories,
+    refetchOnWindowFocus: false,
+  });
+  const allCategoriesData = allCat?.data.data;
 
   return (
     <>
@@ -45,6 +56,23 @@ export default function Home() {
             <img src={swiperImg4} className="block w-full h-full" alt="" />
           </div>
         </div>
+      </div>
+
+      <div className="container mx-auto p-6 ">
+        <Swiper
+          slidesPerView={6}
+          loop={true}
+          className="border-2 border-green-400"
+        >
+          {allCategoriesData?.map((cat) => (
+            <SwiperSlide className="mx-2" key={cat._id}>
+              <div className="img h-[200px]">
+                <img src={cat.image} className="w-full h-full" alt="" />
+              </div>
+              <div className="text-center text-lg font-normal">{cat.name}</div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
 
       {isLoading ? (
