@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Logo from "./../../assets/images/freshcart-logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
@@ -6,8 +6,12 @@ import { CartContext } from "../../context/CartContext";
 
 export default function Navbar() {
   const { token, setToken } = useContext(AuthContext);
-  const { numOfCartItems } = useContext(CartContext);
+  const { numOfCartItems, addToCart } = useContext(CartContext);
   const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   addToCart("007");
+  // }, []);
 
   let [loggingOut, setLoggingOut] = useState(false);
   return (
