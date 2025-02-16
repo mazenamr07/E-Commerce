@@ -1,5 +1,5 @@
 import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, createHashRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Home from "./components/Home/Home";
 import Cart from "./components/Cart/Cart";
@@ -27,9 +27,9 @@ import ResetPassword from "./components/ResetPassword/ResetPassword";
 
 const queryClient = new QueryClient();
 
-const routes = createBrowserRouter([
+const routes = createHashRouter([
   {
-    path: "",
+    path: "/",
     element: <Layout />,
     children: [
       {
