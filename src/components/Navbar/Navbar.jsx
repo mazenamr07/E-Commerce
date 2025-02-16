@@ -166,12 +166,16 @@ export default function Navbar() {
               <li className="relative">
                 <Link
                   to="cart"
-                  className="block py-2 capitalize px-3 mt-2 lg:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white lg:hover:bg-transparent lg:hover:text-green-400 lg:p-2 lg:px-0 transition-all"
+                  className="py-2 flex gap-2 items-center capitalize px-3 mt-2 lg:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white lg:hover:bg-transparent lg:hover:text-green-400 lg:p-2 lg:px-0 transition-all"
                 >
                   cart
+                  <div className="w-5 h-5 lg:hidden rounded-full bg-blue-400 flex items-center justify-center text-white text-[0.8rem]">
+                    {numOfCartItems}
+                  </div>
                 </Link>
+
                 <Link to="cart">
-                  <div className="w-5 h-5 top-[-10%] end-[-35%] bg-blue-400 rounded-full text-xs absolute flex items-center justify-center text-white">
+                  <div className="hidden w-5 h-5 top-[-10%] end-[-35%] bg-blue-400 rounded-full text-xs absolute lg:flex items-center justify-center text-white">
                     {numOfCartItems}
                   </div>
                 </Link>
@@ -180,12 +184,15 @@ export default function Navbar() {
               <li className="relative">
                 <Link
                   to="wishlist"
-                  className="block py-2 capitalize px-3 mt-2 lg:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white lg:hover:bg-transparent lg:hover:text-green-400 lg:p-2 lg:px-0 transition-all"
+                  className="py-2 flex gap-2 items-center capitalize px-3 mt-2 lg:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white lg:hover:bg-transparent lg:hover:text-green-400 lg:p-2 lg:px-0 transition-all"
                 >
                   wishlist
+                  <div className="w-5 h-5 lg:hidden rounded-full bg-red-400 flex items-center justify-center text-white text-[0.8rem]">
+                    {numOfWishlistItems}
+                  </div>
                 </Link>
                 <Link to="wishlist">
-                  <div className="w-5 h-5 top-[-10%] end-[-25%] bg-red-400 rounded-full text-xs absolute flex items-center justify-center text-white">
+                  <div className="hidden w-5 h-5 top-[-10%] end-[-25%] bg-red-400 rounded-full text-xs absolute lg:flex items-center justify-center text-white">
                     {numOfWishlistItems}
                   </div>
                 </Link>
@@ -215,6 +222,15 @@ export default function Navbar() {
                   className="block py-2 capitalize px-3 mt-2 lg:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white lg:hover:bg-transparent lg:hover:text-green-400 lg:p-2 lg:px-0 transition-all"
                 >
                   brands
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="allorders"
+                  className="block py-2 capitalize px-3 mt-2 lg:mt-0 text-black rounded-sm hover:bg-green-400 hover:text-white lg:hover:bg-transparent lg:hover:text-green-400 lg:p-2 lg:px-0 transition-all"
+                >
+                  Orders
                 </Link>
               </li>
 

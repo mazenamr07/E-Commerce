@@ -11,7 +11,6 @@ export default function Order() {
   const navigate = useNavigate();
 
   function submit(values) {
-    console.log(values);
     if (paymentMethod == "cash") {
       payCash(values);
     } else if (paymentMethod == "visa") {
@@ -51,7 +50,6 @@ export default function Order() {
           headers: { token: localStorage.getItem("token") },
         }
       );
-      console.log(res);
       window.open(res.data.session.url, "_blank");
     } catch (err) {
       if (cartID == undefined) {

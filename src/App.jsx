@@ -19,6 +19,8 @@ import { Toaster } from "react-hot-toast";
 import Wishlist from "./components/Wishlist/Wishlist";
 import WishlistContextProvider from "./context/WishlistContext";
 import Order from "./components/Order/Order";
+import AllOrders from "./components/AllOrders/AllOrders";
+import OrderStatement from "./components/OrderStatement/OrderStatement";
 
 const queryClient = new QueryClient();
 
@@ -64,6 +66,22 @@ const routes = createBrowserRouter([
         element: (
           <Guard>
             <Order />
+          </Guard>
+        ),
+      },
+      {
+        path: "allorders/:id",
+        element: (
+          <Guard>
+            <OrderStatement />
+          </Guard>
+        ),
+      },
+      {
+        path: "allorders",
+        element: (
+          <Guard>
+            <AllOrders />
           </Guard>
         ),
       },

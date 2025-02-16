@@ -43,7 +43,7 @@ export default function Cart() {
           </button>
 
           <span className="text-center text-xl py-3 px-5 rounded-2xl bg-green-400 text-white drop-shadow-2xl border-4">
-            Total Price : {totalPrice}
+            Total Price : {totalPrice} EGP
           </span>
         </div>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">

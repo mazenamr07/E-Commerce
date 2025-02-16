@@ -66,7 +66,6 @@ export default function ProductDetails() {
               <button
                 onClick={() => {
                   addToCart(id);
-                  console.log(" haha");
                 }}
                 className="flex cursor-pointer w-full my-2 items-center text-white capitalize bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 text-center transition-all"
               >
