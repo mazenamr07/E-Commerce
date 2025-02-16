@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { WishlistContext } from "../../context/WishlistContext";
+import { CartContext } from "../../context/CartContext";
 
 export default function Wishlist() {
   const {
@@ -9,6 +10,8 @@ export default function Wishlist() {
     updateItemCount,
     totalPrice,
   } = useContext(WishlistContext);
+  const { addToCart } = useContext(CartContext);
+
   const didRun = useRef(false);
 
   useEffect(() => {
@@ -24,6 +27,7 @@ export default function Wishlist() {
         <h1 className="text-center text-5xl font-medium py-5 my-2 rounded-2xl bg-red-400 text-white drop-shadow-2xl border-4">
           Your Wishlist
         </h1>
+
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
@@ -31,13 +35,16 @@ export default function Wishlist() {
                 <th scope="col" className="px-16 py-3">
                   <span className="sr-only">Image</span>
                 </th>
+
                 <th scope="col" className="px-6 py-3">
                   Product
                 </th>
+
                 <th scope="col" className="px-6 py-3">
                   Price
                 </th>
-                <th scope="col" className="px-6 py-3">
+
+                <th scope="col" colSpan={2} className="px-6 py-3 text-center">
                   Action
                 </th>
               </tr>
@@ -55,12 +62,26 @@ export default function Wishlist() {
                       alt="product image"
                     />
                   </td>
+
                   <td className="px-6 py-4 font-semibold text-gray-900 ">
                     {item.title}
                   </td>
+
                   <td className="px-6 py-4 font-semibold text-gray-900">
                     {item.price} EGP
                   </td>
+
+                  <td className="px-6 py-4">
+                    <button
+                      onClick={() => {
+                        addToCart(item.id);
+                      }}
+                      className="font-medium cursor-pointer text-green-500  hover:underline"
+                    >
+                      Add to Cart
+                    </button>
+                  </td>
+
                   <td className="px-6 py-4">
                     <button
                       onClick={() => {
