@@ -7,6 +7,7 @@ export default function WishlistContextProvider({ children }) {
   const [numOfWishlistItems, setNumOfWishlistItems] = useState();
   const [wishlistItems, setWishlistItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState();
+  const [checkedItems, setCheckedItems] = useState([]);
 
   async function addToWishlist(productId) {
     try {
@@ -37,6 +38,11 @@ export default function WishlistContextProvider({ children }) {
       if (res.data.status == "success") {
         setWishlistItems(res.data.data);
         setNumOfWishlistItems(res.data.data.length);
+        let tempArray = [];
+        for (let i = 0; i < res.data.data.length; i++) {
+          tempArray.push(res.data.data[i]._id);
+        }
+        setCheckedItems(tempArray);
       }
     } catch (err) {
       toast.error("Oops.. something went wrong!");
@@ -95,6 +101,7 @@ export default function WishlistContextProvider({ children }) {
         numOfWishlistItems,
         getWishlistItems,
         deleteWishlistItem,
+        checkedItems,
       }}
     >
       {children}

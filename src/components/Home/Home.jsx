@@ -11,7 +11,6 @@ import swiperImg4 from "../../assets/images/slider-2.jpeg";
 import { CartContext } from "../../context/CartContext";
 
 export default function Home() {
-  const { addToCart } = useContext(CartContext);
   const [search, setSearch] = useState("");
 
   function updateSearch(event) {

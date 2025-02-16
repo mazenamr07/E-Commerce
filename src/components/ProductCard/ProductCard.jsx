@@ -1,11 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { WishlistContext } from "../../context/WishlistContext";
 
 export default function ProductCard(props) {
   const { addToCart } = useContext(CartContext);
-  const { addToWishlist } = useContext(WishlistContext);
+  const { addToWishlist, checkedItems } = useContext(WishlistContext);
+  const [wishlistClass, setWishlistClass] = useState("");
+  const inWishlist = "fa-solid fa-heart text-3xl cursor-pointer text-red-500";
+  const notInWishlist =
+    "fa-solid fa-heart text-3xl cursor-pointer hover:text-red-500 transition-all";
 
   const {
     title,
@@ -16,6 +20,14 @@ export default function ProductCard(props) {
     ratingsAverage,
     category,
   } = props.product;
+
+  useEffect(() => {
+    if (checkedItems.includes(_id)) {
+      setWishlistClass(inWishlist);
+    } else {
+      setWishlistClass(notInWishlist);
+    }
+  }, [checkedItems]);
 
   return (
     <>
@@ -72,8 +84,9 @@ export default function ProductCard(props) {
           <i
             onClick={() => {
               addToWishlist(_id);
+              setWishlistClass(inWishlist);
             }}
-            className="fa-solid fa-heart text-3xl cursor-pointer hover:text-red-500 transition-all"
+            className={wishlistClass}
           ></i>
         </div>
       </div>
