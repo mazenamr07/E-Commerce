@@ -71,7 +71,7 @@ export default function WishlistContextProvider({ children }) {
     }
   }
 
-  async function deleteWishlistItem(id) {
+  async function deleteWishlistItem(id, single) {
     try {
       const res = await axios.delete(
         `https://ecommerce.routemisr.com/api/v1/wishlist/${id}`,
@@ -83,12 +83,22 @@ export default function WishlistContextProvider({ children }) {
       );
       if (res.data.status == "success") {
         setNumOfWishlistItems(res.data.data.length);
-        toast.success(res.data.message);
-        window.location.reload();
+        if (single) {
+          toast.success(res.data.message);
+        } else {
+          toast.success("Wishlist Cleared Successfully");
+        }
+        getWishlistItems();
       }
     } catch (err) {
       toast.error("Oops.. something went wrong!");
     }
+  }
+
+  function clearWishlist() {
+    checkedItems.forEach((item) => {
+      deleteWishlistItem(item, false);
+    });
   }
 
   return (
@@ -102,6 +112,7 @@ export default function WishlistContextProvider({ children }) {
         getWishlistItems,
         deleteWishlistItem,
         checkedItems,
+        clearWishlist,
       }}
     >
       {children}

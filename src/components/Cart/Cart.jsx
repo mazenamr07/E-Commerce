@@ -26,6 +26,7 @@ export default function Cart() {
         <h1 className="text-center text-5xl font-medium py-5 my-2 rounded-2xl bg-green-400 text-white drop-shadow-2xl border-4">
           Shopping Cart
         </h1>
+
         <div className="my-2 gap-4 flex justify-end items-center">
           <Link to={`/order`}>
             <button className="flex cursor-pointer py-3 items-center text-white capitalize md:ms-2 bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 text-center transition-all">
@@ -46,6 +47,7 @@ export default function Cart() {
             Total Price : {totalPrice} EGP
           </span>
         </div>
+        
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">

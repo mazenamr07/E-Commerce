@@ -9,6 +9,7 @@ export default function Wishlist() {
     deleteWishlistItem,
     updateItemCount,
     totalPrice,
+    clearWishlist,
   } = useContext(WishlistContext);
   const { addToCart } = useContext(CartContext);
 
@@ -27,6 +28,17 @@ export default function Wishlist() {
         <h1 className="text-center text-5xl font-medium py-5 my-2 rounded-2xl bg-red-400 text-white drop-shadow-2xl border-4">
           Your Wishlist
         </h1>
+
+        <div className="my-2 gap-4 flex justify-end items-center">
+          <button
+            onClick={() => {
+              clearWishlist();
+            }}
+            className="flex cursor-pointer items-center py-3 text-white capitalize md:ms-2 bg-red-400 hover:bg-red-500 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 text-center transition-all"
+          >
+            Clear Wishlist
+          </button>
+        </div>
 
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500">
@@ -85,7 +97,7 @@ export default function Wishlist() {
                   <td className="px-6 py-4">
                     <button
                       onClick={() => {
-                        deleteWishlistItem(item.id);
+                        deleteWishlistItem(item.id, true);
                       }}
                       className="font-medium cursor-pointer text-red-600  hover:underline"
                     >
