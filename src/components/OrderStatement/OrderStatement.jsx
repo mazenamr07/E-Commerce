@@ -22,7 +22,6 @@ export default function OrderStatement() {
         const order = res.data.find((obj) => obj._id == id);
         setMainOrder(order);
         setOrderCart(order.cartItems);
-        console.log(res.data, order, order.cartItems);
       }
     } catch (err) {
       toast.error("Oops.. something went wrong!");

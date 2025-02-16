@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import Category from "../Category/Category";
 import { GridLoader } from "react-spinners";
 import BrandCard from "../BrandCard/BrandCard";
 

@@ -21,6 +21,7 @@ import WishlistContextProvider from "./context/WishlistContext";
 import Order from "./components/Order/Order";
 import AllOrders from "./components/AllOrders/AllOrders";
 import OrderStatement from "./components/OrderStatement/OrderStatement";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 
 const queryClient = new QueryClient();
 
@@ -114,6 +115,14 @@ const routes = createBrowserRouter([
         element: (
           <AuthGuard>
             <Login />
+          </AuthGuard>
+        ),
+      },
+      {
+        path: "forgot",
+        element: (
+          <AuthGuard>
+            <ForgotPassword />
           </AuthGuard>
         ),
       },

@@ -13,8 +13,10 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getCartItems();
-    getWishlistItems();
+    if (localStorage.getItem("token")) {
+      getCartItems();
+      getWishlistItems();
+    }
   }, []);
 
   let [loggingOut, setLoggingOut] = useState(false);
