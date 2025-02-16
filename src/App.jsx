@@ -22,6 +22,7 @@ import Order from "./components/Order/Order";
 import AllOrders from "./components/AllOrders/AllOrders";
 import OrderStatement from "./components/OrderStatement/OrderStatement";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import CodeReset from "./components/CodeReset/CodeReset";
 
 const queryClient = new QueryClient();
 
@@ -123,6 +124,14 @@ const routes = createBrowserRouter([
         element: (
           <AuthGuard>
             <ForgotPassword />
+          </AuthGuard>
+        ),
+      },
+      {
+        path: "code_reset",
+        element: (
+          <AuthGuard>
+            <CodeReset />
           </AuthGuard>
         ),
       },
