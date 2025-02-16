@@ -10,6 +10,7 @@ export default function ForgotPassword() {
   let [loadingButton, setLoadingButton] = useState(false);
   let [errMsg, setErrMsg] = useState(null);
   let [successMsg, setSuccessMsg] = useState(null);
+  const [email, setEmail] = useState();
 
   let [codeLoadingButton, setCodeLoadingButton] = useState(false);
   let [codeErrMsg, setCodeErrMsg] = useState(null);
@@ -54,11 +55,10 @@ export default function ForgotPassword() {
         "https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords",
         values
       );
-      setSuccessMsg(res.data.message);
-
-      // setTimeout(() => {
-      //   navigate("/code_reset");
-      // }, 500);
+      if (res.data.statusMsg == "success") {
+        setSuccessMsg(res.data.message);
+        setEmail(values.email);
+      }
     } catch (err) {
       setErrMsg(err.response.data.message);
     } finally {
@@ -75,11 +75,14 @@ export default function ForgotPassword() {
         "https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode",
         values
       );
-      setCodeSuccessMsg(res.data.message);
+      if (res.data.status == "Success") {
+        setCodeSuccessMsg(res.data.status);
+        localStorage.setItem("resetPasswordEmail", email);
+      }
 
-      // setTimeout(() => {
-      //   navigate("/code_reset");
-      // }, 500);
+      setTimeout(() => {
+        navigate("/reset_password");
+      }, 500);
     } catch (err) {
       setCodeErrMsg(err.response.data.message);
     } finally {
