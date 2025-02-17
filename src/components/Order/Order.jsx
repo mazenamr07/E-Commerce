@@ -9,6 +9,9 @@ export default function Order() {
   const [paymentMethod, setPaymentMethod] = useState();
   const { cartID, getCartItems } = useContext(CartContext);
   const navigate = useNavigate();
+  
+  const ogUrl = `${window.location.origin}/E-Commerce/#`;
+  const fixedUrl = encodeURIComponent(ogUrl);
 
   function submit(values) {
     if (paymentMethod == "cash") {
@@ -41,10 +44,11 @@ export default function Order() {
       }
     }
   }
+
   async function payVisa(values) {
     try {
       const res = await axios.post(
-        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartID}?url=${window.location.origin}`,
+        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartID}?url=${fixedUrl}`,
         values,
         {
           headers: { token: localStorage.getItem("token") },
@@ -52,7 +56,6 @@ export default function Order() {
       );
       window.open(res.data.session.url, "_blank");
       console.log(res);
-      
     } catch (err) {
       if (cartID == undefined) {
         toast.error("Oops.. your cart is empty!");
