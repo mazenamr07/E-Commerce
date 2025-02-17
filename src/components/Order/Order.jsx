@@ -44,13 +44,15 @@ export default function Order() {
   async function payVisa(values) {
     try {
       const res = await axios.post(
-        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartID}?url=E-Commerce/#/${window.location.origin}`,
+        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartID}?url=${window.location.origin}`,
         values,
         {
           headers: { token: localStorage.getItem("token") },
         }
       );
       window.open(res.data.session.url, "_blank");
+      console.log(res);
+      
     } catch (err) {
       if (cartID == undefined) {
         toast.error("Oops.. your cart is empty!");
