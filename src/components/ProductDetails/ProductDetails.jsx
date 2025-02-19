@@ -8,7 +8,19 @@ export default function ProductDetails() {
   const { id } = useParams();
   let [details, setDetails] = useState();
   const { addToCart } = useContext(CartContext);
-  const { addToWishlist } = useContext(WishlistContext);
+  const { addToWishlist, checkedItems } = useContext(WishlistContext);
+  const [wishlistClass, setWishlistClass] = useState("");
+  const inWishlist = "fa-solid fa-heart text-3xl cursor-pointer text-red-500";
+  const notInWishlist =
+    "fa-solid fa-heart text-3xl cursor-pointer hover:text-red-500 transition-all";
+
+  useEffect(() => {
+    if (checkedItems.includes(id)) {
+      setWishlistClass(inWishlist);
+    } else {
+      setWishlistClass(notInWishlist);
+    }
+  }, [checkedItems]);
 
   async function getDetails() {
     const { data } = await axios.get(
@@ -75,8 +87,9 @@ export default function ProductDetails() {
               <i
                 onClick={() => {
                   addToWishlist(id);
+                  setWishlistClass(inWishlist);
                 }}
-                className="fa-solid fa-heart text-3xl cursor-pointer hover:text-red-500 transition-all"
+                className={wishlistClass}
               ></i>
             </div>
           </div>
