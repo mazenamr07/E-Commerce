@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { WishlistContext } from "../../context/WishlistContext";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -34,11 +35,19 @@ export default function ProductDetails() {
 
   return (
     <>
-      <div className="container mx-auto p-6">
+      <div className="container mx-auto p-6 min-h-[59.5vh]">
         <div className="grid grid-cols-6 gap-5">
           <div className="col-span-6 md:col-span-2">
-            <div className="img max-w-60 mx-auto">
-              <img src={details?.imageCover} alt="" />
+            <div className="img max-w-70 mx-auto">
+              <Swiper>
+                {details?.images.map((img) => {
+                  return (
+                    <SwiperSlide>
+                      <img src={img} alt="" />
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
             </div>
           </div>
 
